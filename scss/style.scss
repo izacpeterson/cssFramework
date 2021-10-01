@@ -1,0 +1,100 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+$green: #33cc33;
+$red: #cc3333;
+$blue: #3380cc;
+$yellow: #dfdf20;
+$orange: #df5020;
+$purple: #a633cc;
+$white: #ffffff;
+$black: #000000;
+
+$colors: (
+  green: $green,
+  red: $red,
+  blue: $blue,
+  yellow: $yellow,
+  orange: $orange,
+  purple: $purple,
+  white: $white,
+  black: $black,
+);
+
+$light: (
+  -90,
+  -80,
+  -70,
+  -60,
+  -50,
+  -40,
+  -30,
+  -20,
+  -10,
+  10,
+  20,
+  30,
+  40,
+  50,
+  60,
+  70,
+  80,
+  90
+);
+
+$borders: (
+  none: "none",
+  outline: "2px solid",
+);
+
+@mixin button-modifiers {
+  @each $name, $hex in $colors {
+    &-#{$name} {
+      background: $hex;
+      border: solid 2px $hex;
+      color: white;
+      &:hover {
+        background: scale-color($hex, $lightness: 10%);
+      }
+      &:active {
+        box-shadow: 0 0 10px grey;
+      }
+    }
+    &-outline-#{$name} {
+      background: none;
+      border: solid 2px $hex;
+      color: $hex;
+    }
+  }
+}
+@mixin bg-modifiers {
+  @each $name, $hex in $colors {
+    &-#{$name} {
+      background: $hex;
+    }
+  }
+}
+@mixin text-modifiers {
+  @each $name, $hex in $colors {
+    &-#{$name} {
+      color: $hex;
+    }
+  }
+}
+
+.btn {
+  @include button-modifiers;
+  padding: 20px;
+  transition: 0.2s;
+}
+.bg {
+  @include bg-modifiers;
+}
+.txt {
+  @include text-modifiers;
+}
